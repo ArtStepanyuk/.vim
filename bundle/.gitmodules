@@ -1,0 +1,51 @@
+[submodule "vim-jsbeautify"]
+	path = vim-jsbeautify
+	url = https://github.com/maksimr/vim-jsbeautify.git
+[submodule "badwolf"]
+	path = badwolf
+	url = https://github.com/sjl/badwolf.git
+[submodule "emmet-vim"]
+	path = emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "nerdcommenter"]
+	path = nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "tern_for_vim"]
+	path = tern_for_vim
+	url = https://github.com/ternjs/tern_for_vim.git
+[submodule "vim-css3-syntax"]
+	path = vim-css3-syntax
+	url = https://github.com/hail2u/vim-css3-syntax.git
+[submodule "vim-snipmate"]
+	path = vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
+[submodule "angular-vim-snippets"]
+	path = angular-vim-snippets
+	url = https://github.com/matthewsimo/angular-vim-snippets.git
+[submodule "vim-es6"]
+	path = vim-es6
+	url = https://github.com/isRuslan/vim-es6.git
+[submodule "vim-angular"]
+	path = vim-angular
+	url = https://github.com/burnettk/vim-angular.git
+[submodule "javascript-libraries-syntax.vim"]
+	path = javascript-libraries-syntax.vim
+	url = https://github.com/othree/javascript-libraries-syntax.vim.git
+[submodule "tlib_vim"]
+	path = tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "vim-addon-mw-utils"]
+	path = vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vim-snippets"]
+	path = vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "YouCompleteMe"]
+	path = YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "indentLine"]
+	path = indentLine
+	url = https://github.com/Yggdroot/indentLine.git
+[submodule "bootstrap-snippets"]
+	path = bootstrap-snippets
+	url = https://github.com/bonsaiben/bootstrap-snippets.git
