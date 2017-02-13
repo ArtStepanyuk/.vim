@@ -38,6 +38,10 @@ set foldnestmax=10
 nnoremap <space> za
 set foldmethod=manual
 set t_Co=256
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 let g:snips_trigger_key = '<C-J>'
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for json
