@@ -1,3 +1,48 @@
 [submodule "bundle/typescript-vim"]
 	path = bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "bundle/--force"]
+	path = bundle/--force
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "bundle/emmet-vim"]
+	path = bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim
+[submodule "bundle/bs3-sublime-plugin"]
+	path = bundle/bs3-sublime-plugin
+	url = https://github.com/JasonMortonNZ/bs3-sublime-plugin
+[submodule "bundle/badwolf"]
+	path = bundle/badwolf
+	url = https://github.com/sjl/badwolf
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule "bundle/javascript-libraries-syntax.vim"]
+	path = bundle/javascript-libraries-syntax.vim
+	url = https://github.com/othree/javascript-libraries-syntax.vim
+[submodule "bundle/indentLine"]
+	path = bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine
+[submodule "bundle/tern_for_vim"]
+	path = bundle/tern_for_vim
+	url = https://github.com/ternjs/tern_for_vim
+[submodule "bundle/tlib_vim"]
+	path = bundle/tlib_vim
+	url = https://github.com/tomtom/tlib_vim
+[submodule "bundle/vim-addon-mw-utils"]
+	path = bundle/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils
+[submodule "bundle/vim-css3-syntax"]
+	path = bundle/vim-css3-syntax
+	url = https://github.com/hail2u/vim-css3-syntax
+[submodule "bundle/vim-angular2-snippets"]
+	path = bundle/vim-angular2-snippets
+	url = https://github.com/magarcia/vim-angular2-snippets
+[submodule "bundle/vim-jsbeautify"]
+	path = bundle/vim-jsbeautify
+	url = https://github.com/maksimr/vim-jsbeautify
+[submodule "bundle/vim-snipmate"]
+	path = bundle/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate
