@@ -35,9 +35,19 @@ set incsearch
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=2
+" when indenting with '>', use 4 spaces width
+set shiftwidth=2
+" On pressing tab, insert 4 spaces
+set expandtab
 nnoremap <space> za
 set foldmethod=manual
 set t_Co=256
+let g:syntastic_javascript_checkers = ['jshint']
+let g:ctrlp_cmd='CtrlP :pwd'
+let g:ctrlp_use_caching = 0
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 autocmd QuickFixCmdPost [^l]* nested cwindow
