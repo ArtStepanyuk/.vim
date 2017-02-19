@@ -20,12 +20,17 @@ syntax on
 filetype plugin indent on
 set backupdir=~/vimtmp,.
 set directory=~/vimtmp,.
-colorscheme badwolf
+"colorscheme badwolf
+set background=dark
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+colorscheme hybrid
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
 syntax enable
 set number
 set showcmd
 set cursorline
+hi CursorLine gui=underline ctermbg=lightBlue cterm=underline
 filetype indent on
 set wildmenu
 set relativenumber

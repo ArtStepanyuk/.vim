@@ -7,6 +7,10 @@ and much more all what you wanted to do with your vim on new machine but never h
 
 Vim synching between machines
 Get vim with ctrlP support from AUR or add ctrlP to submodules itself
+Before install make sure you have node modules required for eslint and beautify
+
+npm -g i js-beautify
+npm -g i typescript
 ```
 git clone  https://github.com/ArtStepanyuk/vimSettings
 ln -s ~/.vim/vimrc ~/.vimrc
