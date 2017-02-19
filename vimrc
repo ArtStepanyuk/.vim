@@ -55,9 +55,10 @@ let g:ctrlp_cmd='CtrlP :pwd'
 let g:ctrlp_use_caching = 0
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
-let g:snips_trigger_key = '<C-J>'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:neosnippet#enable_snipmate_compatibility = 1
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for json
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>

@@ -39,7 +39,7 @@
 	url = https://github.com/hail2u/vim-css3-syntax
 [submodule "bundle/vim-angular2-snippets"]
 	path = bundle/vim-angular2-snippets
-	url = https://github.com/magarcia/vim-angular2-snippets
+	url = https://github.com/mhartington/vim-angular2-snippets
 [submodule "bundle/vim-jsbeautify"]
 	path = bundle/vim-jsbeautify
 	url = https://github.com/maksimr/vim-jsbeautify
@@ -88,3 +88,24 @@
 [submodule "bundle/vim-better-whitespace"]
 	path = bundle/vim-better-whitespace
 	url = https://github.com/ntpeters/vim-better-whitespace
+[submodule "bundle/vim-bootstrap3-snippets"]
+	path = bundle/vim-bootstrap3-snippets
+	url = https://github.com/chrisgillis/vim-bootstrap3-snippets
+[submodule "bundle/neosnippet.vim"]
+	path = bundle/neosnippet.vim
+	url = https://github.com/Shougo/neosnippet.vim
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips
+[submodule "bundle/vim-snippets"]
+	path = bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
+[submodule "bundle/vim-es6"]
+	path = bundle/vim-es6
+	url = https://github.com/isRuslan/vim-es6.git
+[submodule "bundle/vim-slim"]
+	path = bundle/vim-slim
+	url = https://github.com/slim-template/vim-slim
+[submodule "bundle/-f"]
+	path = bundle/-f
+	url = https://github.com/mhartington/vim-angular2-snippets
