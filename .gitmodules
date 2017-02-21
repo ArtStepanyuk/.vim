@@ -4,9 +4,6 @@
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
-[submodule "bundle/--force"]
-	path = bundle/--force
-	url = https://github.com/leafgarland/typescript-vim.git
 [submodule "bundle/emmet-vim"]
 	path = bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim
@@ -106,9 +103,6 @@
 [submodule "bundle/vim-slim"]
 	path = bundle/vim-slim
 	url = https://github.com/slim-template/vim-slim
-[submodule "bundle/-f"]
-	path = bundle/-f
-	url = https://github.com/mhartington/vim-angular2-snippets
 [submodule "bundle/fzf.vim"]
 	path = bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim

@@ -1,0 +1,6 @@
+[submodule "typescript-vim"]
+	path = typescript-vim
+	url = https://github.com/leafgarland/typescript-vim
+[submodule "vim-easymotion"]
+	path = vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion
