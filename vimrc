@@ -30,6 +30,7 @@ syntax enable
 set number
 set showcmd
 set cursorline
+set rtp+=~/.fzf
 hi CursorLine gui=underline ctermbg=lightBlue cterm=underline
 filetype indent on
 set wildmenu
@@ -50,6 +51,9 @@ set expandtab
 nnoremap <space> za
 set foldmethod=manual
 set t_Co=256
+let g:airline_powerline_fonts = 1
+let g:term_map_keys=1
+let g:term_show_argument_hints="on_hold"
 let g:syntastic_javascript_checkers = ['jshint']
 let g:ctrlp_cmd='CtrlP :pwd'
 let g:ctrlp_use_caching = 0
@@ -59,6 +63,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:neosnippet#enable_snipmate_compatibility = 1
+
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for json
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
@@ -68,6 +73,8 @@ autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+set encoding=utf8
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
