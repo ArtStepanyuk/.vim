@@ -21,6 +21,13 @@ Some modules like tern will require extra stuff, be sure to check refference to 
 npm -g i js-beautify
 
 npm -g i typescript
+
+```
+Zsh required
+
+Pached fonts for dew icons are required
+```
+
 ```
 git clone  https://github.com/ArtStepanyuk/vimSettings
 ln -s ~/.vim/vimrc ~/.vimrc
@@ -34,3 +41,6 @@ In case of LF troubles
 
 find . -type f -exec dos2unix -k -s -o {} ';'
 
+If all went well you should have this glorius neovim
+
+![Alt text](./ss.png?raw=true "Sexy Vim")
