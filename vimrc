@@ -1,14 +1,5 @@
 
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2015 Mar 24
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
+" Maintainer: Arthur Stepanyuk
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -38,9 +29,7 @@ set relativenumber
 set lazyredraw
 set showmatch
 set incsearch
-set foldenable
-set foldlevelstart=10
-set foldnestmax=10
+set conceallevel=0
 filetype plugin indent on
 " show existing tab with 4 spaces width
 set tabstop=2
@@ -49,7 +38,6 @@ set shiftwidth=2
 " On pressing tab, insert 4 spaces
 set expandtab
 nnoremap <space> za
-set foldmethod=manual
 set t_Co=256
 let g:airline_powerline_fonts = 1
 let g:term_map_keys=1
@@ -63,7 +51,11 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:neosnippet#enable_snipmate_compatibility = 1
+let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
 
+autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for json
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
@@ -75,6 +67,16 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 set encoding=utf8
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
+
+"Better navigation
+noremap H ^
+noremap L g_
+noremap J 5j
+noremap K 5k
+
+" Align blocks of text and keep them selected
+vmap < <gv
+vmap > >gv
 
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
@@ -164,6 +166,104 @@ if has('langmap') && exists('+langnoremap')
   " compatible).
   set langnoremap
 endif
+
+function! SetCursorStyle()
+  if &term =~ "xterm\\|rxvt"
+    " use a | cursor in insert mode
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+
+    " use a rectangle cursor otherwise
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+    " reset cursor when vim exits
+    autocmd VimLeave * silent !echo -ne "\<Esc>]50;CursorShape=0\x7"
+
+  endif
+endfunction
+
+" :h g:incsearch#auto_nohlsearch
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+function! s:config_fuzzyall(...) abort
+  return extend(copy({
+  \   'converters': [
+  \     incsearch#config#fuzzy#converter(),
+  \     incsearch#config#fuzzyspell#converter()
+  \   ],
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
+noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
+noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
+
+" Fold, gets it's own section  ----------------------------------------------{{{
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+
+function! JavaScriptFold() "{{{
+  " syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+  setlocal foldmethod=syntax
+  setlocal foldlevel=99
+  echo "hello"
+  syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
+endfunction "}}}
+
+" function! HTMLFold() "{{{
+"   " syn sync fromstart
+"   set foldmethod=syntax
+"   syn region HTMLFold start=+^<\([^/?!><]*[^/]>\)\&.*\(<\1\|[[:alnum:]]\)$+ end=+^</.*[^-?]>$+ fold transparent keepend extend
+"   syn match HTMLCData "<!\[CDATA\[\_.\{-}\]\]>" fold transparent extend
+"   syn match HTMLCommentFold "<!--\_.\{-}-->" fold transparent extend
+" endfunction "}}}
+
+set foldtext=MyFoldText()
+
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
+autocmd FileType vim setlocal fdc=1
+set foldlevel=99
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+autocmd FileType vim setlocal foldmethod=marker
+autocmd FileType vim setlocal foldlevel=0
+
+" au FileType html call HTMLFold()
+" autocmd FileType html setlocal foldmethod=syntax
+autocmd FileType html setlocal fdl=99
+
+" autocmd FileType javascript call JavaScriptFold()
+autocmd FileType javascript,html,css,scss,typescript setlocal foldlevel=99
+autocmd FileType javascript,typescript,css,scss,json setlocal foldmethod=marker
+autocmd FileType javascript,typescript,css,scss,json setlocal foldmarker={,}
+autocmd FileType coffee setl foldmethod=indent
+" au FileType html nnoremap <buffer> <leader>F zfat
+" }}}
+
+" NERDTree ------------------------------------------------------------------{{{
 
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
