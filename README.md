@@ -1,6 +1,6 @@
 #My vim setup for js development
 
-In the end you will get a very nice looking neovim which is ready to do all you for js/rails development
+In the end you will get a very nice looking neovim which is ready to do all of your js/rails development
 
 1 tern support
 
@@ -12,11 +12,12 @@ In the end you will get a very nice looking neovim which is ready to do all you 
 
 and much more all what you wanted to do with your vim on new machine but never had time
 
-Vim synching between machines
-Get vim with ctrlP support from AUR or add ctrlP to submodules itself
-Before install make sure you have node modules required for eslint and beautify
 
-Some modules like tern will require extra stuff, be sure to check refference to actual repos of plugins which dont work
+Vim synching between machines 
+Get vim with ctrlP support from AUR or add ctrlP to submodules itself. 
+Before install make sure you have node modules required for eslint and beautify.
+
+Some modules like tern will require extra stuff, be sure to check the reference of the actual repos of plugins which dont work.
 
 npm -g i js-beautify
 

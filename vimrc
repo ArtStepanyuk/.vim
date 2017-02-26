@@ -6,16 +6,18 @@ if v:progname =~? "evim"
   finish
 endif
 
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
-set backupdir=~/vimtmp,.
-set directory=~/vimtmp,.
+"Theme config
 "colorscheme badwolf
 set background=dark
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 colorscheme hybrid
+
+" Core config
+execute pathogen#infect()
+filetype plugin indent on
+set backupdir=~/vimtmp,.
+set directory=~/vimtmp,.
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
 syntax enable
 set number
@@ -30,6 +32,8 @@ set lazyredraw
 set showmatch
 set incsearch
 set conceallevel=0
+set encoding=utf8
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
 filetype plugin indent on
 " show existing tab with 4 spaces width
 set tabstop=2
@@ -37,8 +41,9 @@ set tabstop=2
 set shiftwidth=2
 " On pressing tab, insert 4 spaces
 set expandtab
-nnoremap <space> za
 set t_Co=256
+
+" Variables
 let g:airline_powerline_fonts = 1
 let g:term_map_keys=1
 let g:term_show_argument_hints="on_hold"
@@ -55,6 +60,7 @@ let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
 
+" Autocomplete
 autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 " for json
@@ -65,15 +71,12 @@ autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-set encoding=utf8
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
 
 "Better navigation
 noremap H ^
 noremap L g_
 noremap J 5j
 noremap K 5k
-
 " Align blocks of text and keep them selected
 vmap < <gv
 vmap > >gv
@@ -98,7 +101,7 @@ set incsearch		" do incremental searching
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
-
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
@@ -181,6 +184,7 @@ function! SetCursorStyle()
   endif
 endfunction
 
+" Search
 " :h g:incsearch#auto_nohlsearch
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -202,8 +206,9 @@ endfunction
 
 noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
 noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
-noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
+noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))i
 
+" Copy pasted from https://github.com/mhartington/
 " Fold, gets it's own section  ----------------------------------------------{{{
 
 function! MyFoldText() " {{{
@@ -263,8 +268,8 @@ autocmd FileType coffee setl foldmethod=indent
 " au FileType html nnoremap <buffer> <leader>F zfat
 " }}}
 
-" NERDTree ------------------------------------------------------------------{{{
-
+" NERDTree ---------------------------------------- --------------------------{{{
+" Custome collors look great with them
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
