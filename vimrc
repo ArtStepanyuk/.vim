@@ -29,6 +29,8 @@ filetype indent on
 set wildmenu
 set relativenumber
 set lazyredraw
+set hid
+set ignorecase
 set showmatch
 set incsearch
 set conceallevel=0
@@ -59,17 +61,15 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+let g:airline#extensions#tabline#enabled = 1
 
 " Autocomplete
 autocmd FileType typescript setlocal completeopt+=menu,preview
+autocmd FileType typescript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for json
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-" for jsx
 autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
-" for html
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 "Better navigation
@@ -136,9 +136,14 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+  aug omnicomplete
+    au!
+    au FileType css,sass,scss,stylus,less setl omnifunc=csscomplete#CompleteCSS
+    au FileType html,markdown setl omnifunc=emmet#completeTag
+    au FileType javascript,jsx,typescript setl omnifunc=tern#Complete
+    au FileType python setl omnifunc=pythoncomplete#Complete
+    au FileType xml setl omnifunc=xmlcomplete#CompleteTags
+  aug END
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -204,6 +209,18 @@ function! s:config_fuzzyall(...) abort
   \ }), get(a:, 1, {}))
 endfunction
 
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+noremap <c-l>  :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
 noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
 noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))i
