@@ -16,27 +16,27 @@ colorscheme hybrid
 " Core config
 execute pathogen#infect()
 filetype plugin indent on
+syntax enable
 set backupdir=~/vimtmp,.
 set directory=~/vimtmp,.
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
-syntax enable
 set number
 set showcmd
-set cursorline
 set rtp+=~/.fzf
+set cursorline
 hi CursorLine gui=underline ctermbg=lightBlue cterm=underline
-filetype indent on
 set wildmenu
 set relativenumber
 set lazyredraw
 set hid
 set ignorecase
 set showmatch
+set mat=2
 set incsearch
 set conceallevel=0
 set encoding=utf8
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types\ 11
-filetype plugin indent on
+set timeoutlen=1000 ttimeoutlen=0
 " show existing tab with 4 spaces width
 set tabstop=2
 " when indenting with '>', use 4 spaces width
@@ -44,6 +44,7 @@ set shiftwidth=2
 " On pressing tab, insert 4 spaces
 set expandtab
 set t_Co=256
+set ffs=unix,dos,mac
 
 " Variables
 let g:airline_powerline_fonts = 1
@@ -84,8 +85,8 @@ vmap > >gv
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-set nobackup
-set nowritebackup
+"set nobackup
+"set nowritebackup
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -99,8 +100,6 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 " Don't use Ex mode, use Q for formatting
 map Q gq
